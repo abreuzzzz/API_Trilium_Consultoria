@@ -18,7 +18,7 @@ sheets_service = build("sheets", "v4", credentials=credentials)
 # ===================== Configurações =====================
 export_url = "https://services.contaazul.com/finance-pro-reports/api/v1/installment-view/export"
 headers = {
-    'x-authorization': '89141ccb-2f14-40b9-b43a-dd7fb7fa708f',
+    'x-authorization': '514ca0b9-5252-4ff7-af4b-1f90b7ecb9f6',
     'Content-Type': 'application/json',
     'User-Agent': 'Mozilla/5.0'
 }
@@ -145,7 +145,7 @@ for col_antiga, col_nova in colunas_renomear.items():
 df_consolidado.rename(columns=colunas_renomeadas, inplace=True)
 
 # ===================== Buscar ID da planilha no Google Drive =====================
-folder_id = "13x7oFg4qa-1zczQkxFoEcC7vYv150h-C"
+folder_id = "1GWIw4ZL44IS0cfr8c_a77KOvvG-vH8AN"
 sheet_name = "Financeiro_contas_a_pagar_Trilium"
 
 query = f"name='{sheet_name}' and mimeType='application/vnd.google-apps.spreadsheet' and '{folder_id}' in parents and trashed=false"
