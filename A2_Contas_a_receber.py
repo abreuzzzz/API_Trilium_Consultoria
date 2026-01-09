@@ -24,7 +24,7 @@ headers = {
 }
 
 # Lista de status para processar
-status_list = ["ACQUITTED", "PARTIAL", "PENDING", "LOST", "RENEGOTIATED", "CONCILIATED"]
+status_list = ["ACQUITTED", "PARTIAL", "PENDING", "LOST", "RENEGOTIATED", "CONCILIATED", "OVERDUE"]
 
 # ===================== Baixar e consolidar arquivos XLSX =====================
 print("🔄 Iniciando download dos arquivos XLSX para cada status...")
