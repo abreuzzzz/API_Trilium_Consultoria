@@ -35,27 +35,30 @@ def limpar_aba_completa(aba, nome_aba):
             "foregroundColor": {"red": 0, "green": 0, "blue": 0}
         }
     })
-    print(f"  ✅ {nome_aba} limpa e formatação resetada")
+    print(f"  ✅ {nome_aba} - Conteúdo e formatação removidos")
 
 print("🗑️ Iniciando exclusão COMPLETA de todas as linhas das planilhas...")
 
-# 1. Limpa Contas a Receber
-print("\n📋 Processando: Financeiro_contas_a_receber_Trilium")
+# 1. Limpa TUDO de Contas a Receber
+print("\n📋 Limpando: Financeiro_contas_a_receber_Trilium")
 planilha_receber = client.open_by_key(planilhas_ids["Financeiro_contas_a_receber_Trilium"])
-limpar_aba_completa(planilha_receber.sheet1, "Contas a Receber")
+aba_receber = planilha_receber.sheet1
+limpar_aba_completa(aba_receber, "Contas a Receber")
 
-# 2. Limpa Contas a Pagar
-print("\n📋 Processando: Financeiro_contas_a_pagar_Trilium")
+# 2. Limpa TUDO de Contas a Pagar
+print("\n📋 Limpando: Financeiro_contas_a_pagar_Trilium")
 planilha_pagar = client.open_by_key(planilhas_ids["Financeiro_contas_a_pagar_Trilium"])
-limpar_aba_completa(planilha_pagar.sheet1, "Contas a Pagar")
+aba_pagar = planilha_pagar.sheet1
+limpar_aba_completa(aba_pagar, "Contas a Pagar")
 
-# 3. Limpa Financeiro Completo - Aba principal
-print("\n📋 Processando: Financeiro_Completo_Trilium (sheet1)")
+# 3. Limpa TUDO de Financeiro Completo - Aba principal (sheet1)
+print("\n📋 Limpando: Financeiro_Completo_Trilium (sheet1)")
 planilha_completo = client.open_by_key(planilhas_ids["Financeiro_Completo_Trilium"])
-limpar_aba_completa(planilha_completo.sheet1, "Financeiro Completo - Principal")
+aba_completo = planilha_completo.sheet1
+limpar_aba_completa(aba_completo, "Financeiro Completo - Principal")
 
-# 4. Limpa Dados_Pivotados
-print("\n📋 Processando: Financeiro_Completo_Trilium (Dados_Pivotados)")
+# 4. Limpa TUDO de Financeiro Completo - Aba Dados_Pivotados (se existir)
+print("\n📋 Limpando: Financeiro_Completo_Trilium (Dados_Pivotados)")
 try:
     aba_pivotada = planilha_completo.worksheet("Dados_Pivotados")
     limpar_aba_completa(aba_pivotada, "Dados Pivotados")
@@ -63,4 +66,4 @@ except:
     print("  ⚠️ Aba 'Dados_Pivotados' não encontrada")
 
 print("\n🎉 Limpeza completa concluída com sucesso!")
-print("⚠️ ATENÇÃO: Conteúdo e formatação removidos. Células agora estão em formato TEXTO")
+print("⚠️ ATENÇÃO: Conteúdo e formatação removidos. Células resetadas para formato TEXTO")
