@@ -20,37 +20,47 @@ planilhas_ids = {
     "Financeiro_Completo_Trilium": "1A08gZWPn0N9OIQXPsuOoHqah_IycFXGBWcwRVR3NOCE"
 }
 
+def limpar_aba_completa(aba, nome_aba):
+    """Limpa conteúdo E formatação de uma aba"""
+    print(f"  🗑️ Limpando conteúdo de {nome_aba}...")
+    aba.clear()
+    
+    print(f"  🎨 Removendo formatação de {nome_aba}...")
+    aba.format('A:ZZ', {
+        "numberFormat": {"type": "TEXT"},  # Força formato texto
+        "backgroundColor": {"red": 1, "green": 1, "blue": 1},  # Branco
+        "textFormat": {
+            "bold": False,
+            "italic": False,
+            "foregroundColor": {"red": 0, "green": 0, "blue": 0}
+        }
+    })
+    print(f"  ✅ {nome_aba} limpa e formatação resetada")
+
 print("🗑️ Iniciando exclusão COMPLETA de todas as linhas das planilhas...")
 
-# 1. Limpa TUDO de Contas a Receber
-print("\n📋 Limpando: Financeiro_contas_a_receber_Trilium")
+# 1. Limpa Contas a Receber
+print("\n📋 Processando: Financeiro_contas_a_receber_Trilium")
 planilha_receber = client.open_by_key(planilhas_ids["Financeiro_contas_a_receber_Trilium"])
-aba_receber = planilha_receber.sheet1
-aba_receber.clear()
-print("  ✅ Todas as linhas excluídas (incluindo cabeçalho)")
+limpar_aba_completa(planilha_receber.sheet1, "Contas a Receber")
 
-# 2. Limpa TUDO de Contas a Pagar
-print("\n📋 Limpando: Financeiro_contas_a_pagar_Trilium")
+# 2. Limpa Contas a Pagar
+print("\n📋 Processando: Financeiro_contas_a_pagar_Trilium")
 planilha_pagar = client.open_by_key(planilhas_ids["Financeiro_contas_a_pagar_Trilium"])
-aba_pagar = planilha_pagar.sheet1
-aba_pagar.clear()
-print("  ✅ Todas as linhas excluídas (incluindo cabeçalho)")
+limpar_aba_completa(planilha_pagar.sheet1, "Contas a Pagar")
 
-# 3. Limpa TUDO de Financeiro Completo - Aba principal (sheet1)
-print("\n📋 Limpando: Financeiro_Completo_Trilium (sheet1)")
+# 3. Limpa Financeiro Completo - Aba principal
+print("\n📋 Processando: Financeiro_Completo_Trilium (sheet1)")
 planilha_completo = client.open_by_key(planilhas_ids["Financeiro_Completo_Trilium"])
-aba_completo = planilha_completo.sheet1
-aba_completo.clear()
-print("  ✅ Todas as linhas excluídas (incluindo cabeçalho)")
+limpar_aba_completa(planilha_completo.sheet1, "Financeiro Completo - Principal")
 
-# 4. Limpa TUDO de Financeiro Completo - Aba Dados_Pivotados (se existir)
-print("\n📋 Limpando: Financeiro_Completo_Trilium (Dados_Pivotados)")
+# 4. Limpa Dados_Pivotados
+print("\n📋 Processando: Financeiro_Completo_Trilium (Dados_Pivotados)")
 try:
     aba_pivotada = planilha_completo.worksheet("Dados_Pivotados")
-    aba_pivotada.clear()
-    print("  ✅ Todas as linhas excluídas (incluindo cabeçalho)")
+    limpar_aba_completa(aba_pivotada, "Dados Pivotados")
 except:
     print("  ⚠️ Aba 'Dados_Pivotados' não encontrada")
 
 print("\n🎉 Limpeza completa concluída com sucesso!")
-print("⚠️ ATENÇÃO: Todas as linhas foram removidas, incluindo os cabeçalhos")
+print("⚠️ ATENÇÃO: Conteúdo e formatação removidos. Células agora estão em formato TEXTO")
