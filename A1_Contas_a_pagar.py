@@ -18,13 +18,13 @@ sheets_service = build("sheets", "v4", credentials=credentials)
 # ===================== Configurações =====================
 export_url = "https://services.contaazul.com/finance-pro-reports/v1/financial-statement-view/export"
 headers = {
-    'x-authorization': '514ca0b9-5252-4ff7-af4b-1f90b7ecb9f6',
+    'x-authorization': '89141ccb-2f14-40b9-b43a-dd7fb7fa708f',
     'Content-Type': 'application/json',
     'User-Agent': 'Mozilla/5.0'
 }
 
 # Lista de status para processar
-status_list = ["ACQUITTED", "PARTIAL", "PENDING", "LOST", "RENEGOTIATED", "CONCILIATED"]
+status_list = ["ACQUITTED", "PARTIAL", "PENDING", "LOST", "RENEGOTIATED", "CONCILIATED", "OVERDUE"]
 
 # ===================== Baixar e consolidar arquivos XLSX =====================
 print("🔄 Iniciando download dos arquivos XLSX para cada status...")
